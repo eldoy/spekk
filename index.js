@@ -20,9 +20,10 @@ const lib = load('spec/lib')
 const base = path.join(process.cwd(), 'spec', 'tests')
 const files = fs.readdirSync(base)
 
-let pattern = process.argv[2]
-if (pattern) {
-  pattern = new RegExp(pattern, 'ig')
+let patterns = process.argv[2]
+console.log({ patterns })
+if (patterns) {
+  patterns = patterns.split(',').map(x => new RegExp(x.trim(), 'ig'))
 }
 
 let current
@@ -45,7 +46,7 @@ global.xit = function(){}
 
 for (const file of files) {
   current = file
-  if (!pattern || pattern.test(file)) {
+  if (!patterns || patterns.some(r => r.test(file))) {
     require(path.join(base, file))
   }
 }

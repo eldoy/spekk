@@ -61,20 +61,20 @@ To run only certain tests, you can match with a regex pattern:
 # Match any test file name that includes 'pattern'
 spekk pattern
 
-# Multiple patterns file
-spekk "todo|project"
+# Multiple patterns file, comma separated
+spekk todo,project
 ```
 
 If you want automatically run the tests when you save a file you can use [nodemon:](https://github.com/remy/nodemon)
 
 ```
-nodemon spekk
+nodemon --exec spekk
 ```
 
 Add this to you `package.json` file to run with `npm`:
 ```json
 "scripts": {
-  "test": "nodemon -q spekk"
+  "test": "nodemon -q --exec spekk"
 }
 ```
 Then run with `npm run test` in your application.
