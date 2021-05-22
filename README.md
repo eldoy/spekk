@@ -56,6 +56,7 @@ Run the tests with:
 ```
 spekk
 ```
+The name of the test will be taken from the file name, so if your test file is named `project-test.js`, then the test name will be `Project Test`.
 
 This is a full example:
 ```js
