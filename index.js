@@ -20,6 +20,11 @@ const lib = load('spec/lib')
 const base = path.join(process.cwd(), 'spec', 'tests')
 const files = fs.readdirSync(base)
 
+let pattern = process.argv[2]
+if (pattern) {
+  pattern = new RegExp(pattern, 'ig')
+}
+
 let current
 const store = {}
 function push(key, obj) {
@@ -40,7 +45,9 @@ global.xit = function(){}
 
 for (const file of files) {
   current = file
-  require(path.join(base, file))
+  if (!pattern || pattern.test(file)) {
+    require(path.join(base, file))
+  }
 }
 
 async function run() {
