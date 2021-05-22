@@ -5,7 +5,11 @@ Javascript test runner for NodeJS applications.
 ### Install
 
 ```
+# Install globally
 npm i -g spekk
+
+# Install locally in app
+npm i spekk
 ```
 
 ### Usage
@@ -46,11 +50,17 @@ There are 3 built in global functions you can use in your tests:
 * `it` - defines a test which will be run
 * `xit` - skips a test and does nothing
 * `setup` - run before each test
-```
 
 Run the tests with:
 ```
 spekk
+```
+
+If you want automatically run the tests when you save a file you can use [nodemon.](https://github.com/remy/nodemon) Add this to you `package.json` file:
+```json
+"scripts": {
+  "test": "nodemon -q spekk"
+}
 ```
 
 MIT Licensed. Enjoy!
