@@ -1,5 +1,4 @@
-// Setup is run in the order they are defined
-// so you can have multiple setup functions
+// Setup is run before each test
 setup(async function({ t }){
   // Do some setup
 })
