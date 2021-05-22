@@ -65,13 +65,18 @@ spekk pattern
 spekk "todo|project"
 ```
 
-If you want automatically run the tests when you save a file you can use [nodemon.](https://github.com/remy/nodemon)
+If you want automatically run the tests when you save a file you can use [nodemon:](https://github.com/remy/nodemon)
 
-Add this to you `package.json` file:
+```
+nodemon spekk
+```
+
+Add this to you `package.json` file to run with `npm`:
 ```json
 "scripts": {
   "test": "nodemon -q spekk"
 }
 ```
+Then run with `npm run test` in your application.
 
 MIT Licensed. Enjoy!
