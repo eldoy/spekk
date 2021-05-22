@@ -12,3 +12,8 @@ it('should test it', async ({ t }) => {
 xit('should test it', async ({ t }) => {
   t.ok(true)
 })
+
+// Only this test will be run
+only('should test it', async ({ t }) => {
+  t.ok(true)
+})

@@ -29,19 +29,24 @@ let current
 const store = {}
 function push(key, obj) {
   if (!store[current]) {
-    store[current] = { setup: [], tests: [] }
+    store[current] = { setup: [], tests: [], only: [] }
   }
   store[current][key].push(obj)
 }
 
-global.setup = function(fn) {
+global.setup = global.s = function(fn) {
   push('setup', fn)
 }
 
-global.it = function(name, fn) {
+global.it = global.test = function(name, fn) {
   push('tests', { name, fn})
 }
-global.xit = function(){}
+
+global.only = global.o = function(name, fn) {
+  push('only', { name, fn})
+}
+
+global.xit = global.x = function(){}
 
 for (const file of files) {
   current = file
@@ -70,8 +75,10 @@ async function run() {
       .map(x => x[0].toUpperCase() + x.slice(1))
       .join(' ')
     console.log(`\n🔥 ${text}`)
-    const { setup, tests } = store[item]
-
+    let { setup, tests, only } = store[item]
+    if (only.length) {
+      tests = only
+    }
     for (const test of tests) {
       if (typeof tools.before == 'function') {
         await tools.before()
