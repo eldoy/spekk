@@ -56,6 +56,15 @@ Run the tests with:
 spekk
 ```
 
+To run only certain tests, you can match with a regex pattern:
+```
+# Match any test file name that includes 'pattern'
+spekk pattern
+
+# Multiple patterns file
+spekk "todo|project"
+```
+
 If you want automatically run the tests when you save a file you can use [nodemon.](https://github.com/remy/nodemon) Add this to you `package.json` file:
 ```json
 "scripts": {
