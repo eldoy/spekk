@@ -57,6 +57,29 @@ Run the tests with:
 spekk
 ```
 
+This is a full example:
+```js
+// Setup is run before each test
+setup(async function({ t }){
+  // Do some setup
+})
+
+// This test is being run
+it('should test it', async ({ t }) => {
+  t.ok(true)
+})
+
+// This test is skipped
+xit('should test it', async ({ t }) => {
+  t.ok(true)
+})
+
+// Only this test will be run
+only('should test it', async ({ t }) => {
+  t.ok(true)
+})
+```
+
 To run only certain tests, you can match with a regex pattern:
 ```
 # Match any test file name that includes 'pattern'
