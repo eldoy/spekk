@@ -58,7 +58,7 @@ spekk
 ```
 The name of the test will be taken from the file name, so if your test file is named `project-test.js`, then the test name will be `Project Test`.
 
-This is a full example:
+This is a full example, stored in `spec/tests/spekk-test.js`:
 ```js
 // Setup is run before each test
 setup(async function({ t }){
