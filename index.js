@@ -27,20 +27,21 @@ if (patterns) {
 
 let current
 const store = {}
-function push(key, obj) {
+function push(obj) {
   if (!store[current]) {
-    store[current] = { setup: [], tests: [] }
+    store[current] = []
   }
-  store[current][key].push(obj)
+  store[current].push(obj)
 }
 
 global.setup = function(fn) {
-  push('setup', fn)
+  push({ fn })
 }
 
 global.it = function(name, fn) {
-  push('tests', { name, fn})
+  push({ name, fn })
 }
+
 global.xit = function(){}
 
 for (const file of files) {
@@ -70,14 +71,11 @@ async function run() {
       .map(x => x[0].toUpperCase() + x.slice(1))
       .join(' ')
     console.log(`\n🔥 ${text}`)
-    const { setup, tests } = store[item]
+    const tests = store[item]
 
     for (const test of tests) {
       if (typeof tools.before == 'function') {
         await tools.before()
-      }
-      for (const fn of setup) {
-        await fn(tools)
       }
       const { name, fn } = test
       try {
