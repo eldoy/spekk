@@ -21,7 +21,6 @@ const base = path.join(process.cwd(), 'spec', 'tests')
 const files = fs.readdirSync(base)
 
 let patterns = process.argv[2]
-console.log({ patterns })
 if (patterns) {
   patterns = patterns.split(',').map(x => new RegExp(x.trim(), 'ig'))
 }
