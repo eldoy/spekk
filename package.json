@@ -1,0 +1,21 @@
+{
+  "name": "spekk",
+  "version": "0.1.0",
+  "description": "Javascript test runner",
+  "main": "index.js",
+  "bin": {
+    "spekk": "bin/spekk.js"
+  },
+  "scripts": {
+    "test": "nodemon bin/spekk.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eldoy/spekk"
+  },
+  "author": "Vidar Eldøy <vidar@eldoy.com>",
+  "license": "MIT",
+  "dependencies": {
+    "conficurse": "^0.3.4"
+  }
+}
