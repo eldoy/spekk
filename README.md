@@ -45,7 +45,7 @@ it('should test something', async function({ t, db, data, lib }) {
 
 The `t` in the function above is included automatically and is [Node assert.](https://nodejs.org/api/assert.html)
 
-There are 3 built in global functions you can use in your tests:
+There are 3 built in global functions you can use in [your tests](https://github.com/eldoy/spekk/blob/master/spec/tests/spekk-test.js):
 
 * `it` - defines a test which will be run
 * `xit` - skips a test and does nothing
