@@ -3,15 +3,13 @@ process.env.NODE_ENV = 'test'
 const fs = require('fs')
 const path = require('path')
 const assert = require('assert')
+let spekk
 const spekkFile = path.join(process.cwd(), 'spec', 'spekk.js')
-if (!fs.existsSync(spekkFile)) {
-  console.log('⛄ spec/spekk.js file is missing')
-  process.exit(0)
+if (fs.existsSync(spekkFile)) {
+  spekk = require(spekkFile)
 }
-const spekk = require(spekkFile)
 if (typeof spekk != 'function') {
-  console.log('⛄ spec/spekk.js must export a function')
-  process.exit(0)
+  spekk = function() {}
 }
 const { load } = require('conficurse')
 const data = load('spec/data')
