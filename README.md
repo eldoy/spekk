@@ -14,9 +14,9 @@ npm i spekk
 
 ### Usage
 
-Create the spekk file in `spec/spekk.js`. Add your tests in `spec/tests`. Data and test helpers can be added in `spec/data` and `spec/lib` respectively, they will be loaded automatically if they exist.
+Add your tests in `spec/tests`. Data and test helpers can be added in `spec/data` and `spec/lib` respectively, they will be loaded automatically if they exist.
 
-The `spec/spekk.js` file must export a function that returns a Javascript object with the things you need for your tests:
+Optionally create a spekk file in `spec/spekk.js`. The `spec/spekk.js` file must export a function that returns a Javascript object with the things you need for your tests:
 
 ```js
 module.exports = async function() {
