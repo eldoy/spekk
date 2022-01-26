@@ -16,6 +16,6 @@
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "MIT",
   "dependencies": {
-    "conficurse": "^0.3.4"
+    "conficurse": "^0.3.5"
   }
 }
