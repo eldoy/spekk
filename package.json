@@ -1,6 +1,6 @@
 {
   "name": "spekk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Javascript test runner for NodeJS applications",
   "main": "index.js",
   "bin": {
