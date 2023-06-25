@@ -57,7 +57,7 @@ async function run() {
   console.log(`\n⭐ Starting test suite`)
   console.time('Time elapsed')
 
-  const tools = await spekk() || {}
+  const tools = await spekk({ data, lib }) || {}
   if (!tools.options) tools.options = {}
   const sleep = tools.options.time || 0.5
   await new Promise(r => setTimeout(r, sleep * 1000))
