@@ -21,15 +21,15 @@ Optionally create a spekk file in `spec/spekk.js`. The `spec/spekk.js` file must
 ```js
 module.exports = async function() {
   // Set up db connection for example
-  const db = await db({ name: 'spekk-test' })
+  var db = await db({ name: 'spekk-test' })
 
-  // Run before each test if defined
-  async function before() {}
+  // Run before run if defined
+  async function setup() {}
 
-  // Run after each test if defined
-  async function after() {}
+  // Run after run if defined
+  async function teardown() {}
 
-  return { db, before, after }
+  return { db, setup, teardown }
 }
 ```
 
@@ -38,19 +38,22 @@ Whatever the spekk file returns will be available in the tests:
 ```js
 // spec/tests/spec-test.js
 it('should test something', async function({ t, db, data, lib }) {
-  const user = await db('user').get()
+  var user = await db('user').get()
   t.ok(user.id)
 })
 ```
 
 The `t` in the function above is included automatically and is [Node assert.](https://nodejs.org/api/assert.html)
 
-There are 4 built in global functions you can use in [your tests](https://github.com/eldoy/spekk/blob/master/spec/tests/spekk-test.js):
+There are some built in global functions you can use in [your tests](https://github.com/eldoy/spekk/blob/master/spec/tests/spekk-test.js):
 
 * `it` or `test`- defines a test which will be run
 * `xit` or `x` - skips a test and does nothing
 * `only` or `o` - only these tests will be run
-* `setup` or `s` - run before each test
+* `beforeEach` - run before each test
+* `afterEach` - run after each test
+* `beforeAll` - run before all tests in a file
+* `afterAll` - run after all tests in a file
 
 Run the tests with:
 ```
@@ -61,8 +64,8 @@ The name of the test will be taken from the file name, so if your test file is n
 This is a full example, stored in `spec/tests/spekk-test.js`:
 ```js
 // Setup is run before each test
-setup(async function({ t }){
-  // Do some setup
+beforeEach(async function({ t }){
+  // Do something before each test
 })
 
 // This test is being run
