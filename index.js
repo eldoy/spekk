@@ -88,6 +88,8 @@ async function run() {
     await tools.setup()
   }
 
+  var count = 0
+
   for (var item in store) {
     var text = item
       .replace(/\.js$/g, '')
@@ -115,6 +117,7 @@ async function run() {
       try {
         await fn(tools)
         if (name) console.log(`✅ ${name}`)
+        count++
       } catch (e) {
         if (name) console.log(`❌ ${name}`)
         console.log(e.stack)
@@ -127,8 +130,9 @@ async function run() {
     for (var fn of afterAll) {
       await fn(tools)
     }
-    console.log(`\n${tests.length} tests passed.`)
   }
+
+  console.log(`\n${count} tests passed.`)
 
   if (typeof tools.teardown == 'function') {
     await tools.teardown()
