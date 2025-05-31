@@ -17,7 +17,14 @@ var lib = load('spec/lib')
 var base = path.join(process.cwd(), 'spec', 'tests')
 var files = fs.readdirSync(base)
 
-var patterns = process.argv[2]
+var runAll = false
+if (process.argv[2] === '-a') {
+  runAll = true
+  var patterns = process.argv[3]
+} else {
+  var patterns = process.argv[2]
+}
+
 if (patterns) {
   patterns = patterns.split(',').map((x) => new RegExp(x.trim(), 'ig'))
 }
@@ -121,7 +128,10 @@ async function run() {
       } catch (e) {
         if (name) console.log(`❌ ${name}`)
         console.log(e.stack)
-        process.exit()
+
+        if (!runAll) {
+          process.exit()
+        }
       }
       for (var fn of afterEach) {
         await fn(tools)
